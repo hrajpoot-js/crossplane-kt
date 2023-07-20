@@ -1,0 +1,107 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: rds.example.io
+  labels:
+    example.io/provider: aws
+    example.io/environment: dev
+spec:
+  compositeTypeRef:
+    apiVersion: example.io/v1alpha1
+    kind: XRDSInstance
+
+resources: 
+  - name: vpc 
+    base: 
+      apiVersion: ec2.aws.upbound.io/v1beta1
+      kind: VPC
+      metadata:
+        labels:
+          testing.upbound.io/example-name: myapp-vpc
+        name: myapp-vpc
+      spec:
+        forProvider:
+          cidrBlock: 10.10.0.0/16
+          region: ap-south-1
+    patches:
+      - type: FromCompositeFieldPath
+        fromFieldPath: spec.resourceConfig.location 
+        toFieldPath: spec.forProvider.region
+        transforms:
+          - type: map 
+            map: 
+              Mumbai: ap-south-1 
+              Tokyo: ap-northeast-1
+      - type: PatchSet
+        patchSetName: metadata
+  - name: subject-private-1a
+    base:
+      apiVersion: ec2.aws.upbound.io/v1beta1
+      kind: Subnet
+      metadata:
+        labels:
+          testing.upbound.io/example-name: subject-private-1a
+        name: subject-private-1a
+      spec:
+        forProvider:
+          availabilityZone: ap-northeast-1a
+          cidrBlock: 10.10.1.0/24
+          region: ap-south-1
+          vpcIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: myapp
+    patches:
+      - type: FromCompositeFieldPath
+        fromFieldPath: spec.resourceConfig.location 
+        toFieldPath: spec.forProvider.region
+        transforms:
+          - type: map 
+            map: 
+              Mumbai: ap-south-1 
+              Tokyo: ap-northeast-1
+      - type: PatchSet
+        patchSetName: metadata
+
+  - name: subject-private-1c
+    base:
+      apiVersion: ec2.aws.upbound.io/v1beta1
+      kind: Subnet
+      metadata:
+        labels:
+          testing.upbound.io/example-name: subject-private-1a
+        name: subject-private-1a
+      spec:
+        forProvider:
+          availabilityZone: ap-northeast-1a
+          cidrBlock: 10.10.1.0/24
+          region: ap-south-1
+          vpcIdSelector:
+            matchLabels:
+              testing.upbound.io/example-name: myapp
+    patches:
+      - type: FromCompositeFieldPath
+        fromFieldPath: spec.resourceConfig.location 
+        toFieldPath: spec.forProvider.region
+        transforms:
+          - type: map 
+            map: 
+              Mumbai: ap-south-1 
+              Tokyo: ap-northeast-1
+      - type: PatchSet
+        patchSetName: metadata
+
+  - name: subject-private-1d 
+  - name: subject-public-1d
+  - name: routetableprivate
+  - name: routetablepublic
+  - name: internetgateway 
+  - name: routetable-association-private-1a
+  - name: routetable-association-private-1c
+  - name: routetable-association-private-1d
+  - name: routetable-association-public-1d
+  - name: routetableruleprivate 
+  - name: routetablerulepublic 
+  - name: dbsubnetgroup 
+  - name: securitygroup-db 
+  - name: securitygroup-web 
+  - name: sqlinstance 

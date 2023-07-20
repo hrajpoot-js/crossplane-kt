@@ -1,0 +1,39 @@
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rds/v1beta1/instance
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane
+  name: myapp
+spec:
+  forProvider:
+    vpcSecurityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-db
+    dbSubnetGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+    allocatedStorage: 20
+    autoGeneratePassword: true
+    autoMinorVersionUpgrade: true
+    backupRetentionPeriod: 14
+    backupWindow: 09:46-10:16
+    engine: postgres
+    engineVersion: "13.7"
+    instanceClass: db.t3.micro
+    maintenanceWindow: Mon:00:00-Mon:03:00
+    name: myapp
+    passwordSecretRef:
+      key: password
+      name: myapp-crossplane
+      namespace: crossplane-system
+    publiclyAccessible: false
+    region: ap-northeast-1
+    skipFinalSnapshot: true
+    storageEncrypted: true
+    storageType: gp2
+    username: adminuser
+  writeConnectionSecretToRef:
+    name: myapp-crossplane-connection
+    namespace: default

@@ -1,0 +1,101 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-private-1a
+    testing.upbound.io/subnet-type: private
+  name: myapp-crossplane-private-1a
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1a
+    cidrBlock: 10.6.1.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-private-1b
+    testing.upbound.io/subnet-type: private
+  name: myapp-crossplane-private-1b
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1d
+    cidrBlock: 10.6.2.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-private-1c
+    testing.upbound.io/subnet-type: private
+  name: myapp-crossplane-private-1c
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1c
+    cidrBlock: 10.6.3.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1a
+    testing.upbound.io/subnet-type: public
+  name: myapp-crossplane-public-1a
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1a
+    cidrBlock: 10.6.4.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1b
+    testing.upbound.io/subnet-type: public
+  name: myapp-crossplane-public-1b
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1d
+    cidrBlock: 10.6.5.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1c
+    testing.upbound.io/subnet-type: public
+  name: myapp-crossplane-public-1c
+spec:
+  forProvider:
+    availabilityZone: ap-northeast-1c
+    cidrBlock: 10.6.6.0/24
+    region: ap-northeast-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane

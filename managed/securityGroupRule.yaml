@@ -1,0 +1,18 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ec2/v1beta1/securitygrouprule
+  name: test-vpc-securitygroup
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    fromPort: 3306
+    protocol: tcp
+    region: ap-northeast-1
+    securityGroupIdSelector:
+      matchLabels: 
+        managed-by: crossplane
+    self: true
+    toPort: 3306
+    type: ingress

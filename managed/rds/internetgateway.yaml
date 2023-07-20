@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: myapp-crossplane
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane
+spec:
+  forProvider:
+    region: ap-northeast-1
+    tags:
+      Name: myapp-crossplane
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane

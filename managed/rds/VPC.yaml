@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: route53/v1beta1/zoneassociation
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane
+  name: myapp-crossplane
+spec:
+  forProvider:
+    cidrBlock: 10.6.0.0/16
+    enableDnsHostnames: true
+    enableDnsSupport: true
+    region: ap-northeast-1

@@ -1,0 +1,8 @@
+apiVersion: awsblueprints.io/v1alpha1
+kind: ObjectStorage
+metadata:
+  name: test-bucket-awsblueprint-123456789
+spec:
+  resourceConfig:
+    providerConfigName: default
+    region: ap-northeast-1

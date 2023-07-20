@@ -1,0 +1,17 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eks/v1beta1/cluster
+  name: myapp-crossplane-public
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public
+    testing.upbound.io/routetable-type: public
+spec:
+  forProvider:
+    region: ap-northeast-1
+    tags:
+      Name: myapp-crossplane-public
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane

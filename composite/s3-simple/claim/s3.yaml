@@ -1,0 +1,7 @@
+apiVersion: springexample.io/v1alpha1
+kind: ObjectStorage
+metadata:
+  name: test-bucket-awsblueprint-123456789
+spec:
+  resourceConfig:
+    region: ap-northeast-1

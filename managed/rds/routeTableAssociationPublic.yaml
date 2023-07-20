@@ -1,0 +1,50 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1a
+  name: myapp-crossplane-public-1a
+spec:
+  forProvider:
+    region: ap-northeast-1
+    routeTableIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public-1a
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1b
+  name: myapp-crossplane-public-1b
+spec:
+  forProvider:
+    region: ap-northeast-1
+    routeTableIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public-1b
+
+--- 
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: myapp-crossplane-public-1c
+  name: myapp-crossplane-public-1c
+spec:
+  forProvider:
+    region: ap-northeast-1
+    routeTableIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane-public-1c
+

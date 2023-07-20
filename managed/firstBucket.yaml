@@ -1,0 +1,14 @@
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  name: basil-12345670987-dgfhf
+  labels:
+    managed-by: crossplane
+    project: my-interal-app
+spec:
+  forProvider:
+    region: ap-northeast-1
+    tags:
+      managed-by: crossplane
+      project: my-interal-app
+      billingContact: basil

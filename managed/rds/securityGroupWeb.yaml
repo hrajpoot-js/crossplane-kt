@@ -1,0 +1,19 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: myapp-crossplane-web
+  labels: 
+    testing.upbound.io/example-name: myapp-crossplane-web
+spec:
+  forProvider:
+    region: ap-northeast-1
+    description: SecurityGroup
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myapp-crossplane
+    tags:
+      created-by: crossplane
+      env: myapp-dev
+      managed-by: crossplane
+  providerConfigRef:
+    name: default
